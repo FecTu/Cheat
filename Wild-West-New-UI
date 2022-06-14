@@ -9,13 +9,13 @@ PlayerEsp.Switch("Player Esp", function(State)
     ESP:Toggle(State)
 end)
 PlayerEsp.Switch("Boxes Esp", function(State)
-    ESP:Boxes = State
+    ESP:Boxes(State)
 end)
 PlayerEsp.Switch("Name Esp", function(State)
-    ESP:Name = State
+    ESP:Name(State)
 end)
 PlayerEsp.Switch("Tracers Esp", function(State)
-    ESP:Tracers = State
+    ESP:Tracers(State)
 end)
 
 -- Tab 2 --
