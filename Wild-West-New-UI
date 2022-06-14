@@ -29,7 +29,7 @@ end)
 PlayerEsp.Switch("Tracers Esp", nil, function(State)
     ESP.Tracers = State
 end)
-Tab1.Cheat("Ore Esp", function(State)
+Tab1.Cheat("Ore Esp", "Руда", function(State)
     getgenv().esp = State
     local function esp(v)
         local T = Drawing.new("Text")
