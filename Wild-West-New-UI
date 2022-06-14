@@ -25,7 +25,8 @@ local Tab2 = Window.Tab("Misc", 6022668945)
 Tab2.Folder("About", "Добро пожаловать в чит BlankHack, этот чит будет продвигаться и дальше, надеюсь вы поддержите меня :3")
 local Cheat = Tab2.Folder("More", "Дополнительно", function(Status)
 Cheat.Button("Rejoin", function()
-game:GetService("TeleportService"):Teleport(game.PlaceId, game:GetService("Players").LocalPlayer) end)
+game:GetService("TeleportService"):Teleport(game.PlaceId, game:GetService("Players").LocalPlayer)
+end)
 
 game:GetService("UserInputService").InputBegan:Connect(function(Input)
 if Input.KeyCode == Enum.KeyCode.X then
