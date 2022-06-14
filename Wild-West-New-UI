@@ -15,7 +15,7 @@ PlayerEsp .Switch("Player Esp", function(Status)
 ESP:Toggle(State)
 end)
 PlayerEsp .Switch("Player Esp", function(Status)
-ESP:Toggle(State)
+ESP:Toggle(Status)
 end)
 
 -- Tab 2 --
