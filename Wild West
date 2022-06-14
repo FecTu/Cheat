@@ -595,7 +595,7 @@ game.Workspace.WORKSPACE_Entities.Animals.ChildAdded:Connect(
 
 end)
 
-local Toggle1 = Section2:CreateToggle("Animal Esp", nil, function(State)
+local Toggle1 = Section2:CreateToggle("Legendary Animal Esp", nil, function(State)
 getgenv().esp3 = State
 local function esp(v)
     local T = Drawing.new("Text")
