@@ -18,7 +18,7 @@ local ESP = loadstring(game:HttpGet("https://raw.githubusercontent.com/1201for/V
 
 local PlayerEsp = Tab1.Folder("Player", "Возможно получить Бан")
 PlayerEsp.Switch("Player Esp", nil, function(State)
-    ESP:Toggle = State
+    ESP:Toggle(State)
 end)
 PlayerEsp.Switch("Boxes Esp", nil, function(State)
     ESP:Boxes = State
