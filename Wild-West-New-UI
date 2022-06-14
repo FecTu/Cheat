@@ -18,16 +18,16 @@ local ESP = loadstring(game:HttpGet("https://raw.githubusercontent.com/Kiriot22/
 
 local PlayerEsp = Tab1.Folder("Player", "Возможно получить Бан")
 PlayerEsp.Switch("Player Esp", nil, function(State)
-    ESP:Toggle(State)
+    ESP:Toggle(true)
 end)
 PlayerEsp.Switch("Boxes Esp", nil, function(State)
-    ESP:Boxes = State
+    ESP:Boxes = true
 end)
 PlayerEsp.Switch("Name Esp", nil, function(State)
-    ESP:Name = State
+    ESP:Name = true
 end)
 PlayerEsp.Switch("Tracers Esp", nil, function(State)
-    ESP.Tracers = State
+    ESP:Tracers = true
 end)
 Tab1.Cheat("Ore", "Руды", function(State)
 OreEsp.Switch("Ore")
