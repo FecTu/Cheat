@@ -2,23 +2,32 @@ local Luminosity = loadstring(game:HttpGet("https://raw.githubusercontent.com/iH
 
 local Window = Luminosity.new("BlankHack", "By Sora_Blank", 4370345701)
 
+OreDeposits = {}
+for i,v in pairs(game:GetService("Workspace")["WORKSPACE_Interactables"].Mining.OreDeposits:GetChildren()) do
+     if v.ClassName == "Folder" and v:FindFirstChildOfClass("Model") then
+        table.insert(OreDeposits, v.Name)
+    end
+end
+
 local Tab1 = Window.Tab("Esp", 6026568198)
 game:GetService("Players").LocalPlayer.Idled:connect(function()
 game:GetService("VirtualUser"):ClickButton2(Vector2.new())
 end)
+
 local ESP = loadstring(game:HttpGet("https://raw.githubusercontent.com/1201for/V.G-Hub/main/Karrot-Esp"))()
+
 local PlayerEsp = Tab1.Folder("Player", "Возможно получить Бан")
-PlayerEsp.Switch("Player Esp", function(State)
-    ESP:Toggle(State)
+PlayerEsp.Switch("Player Esp", nil, function(State)
+    ESP:Toggle = State
 end)
-PlayerEsp.Switch("Boxes Esp", function(State)
-    ESP:Boxes(State)
+PlayerEsp.Switch("Boxes Esp", nil, function(State)
+    ESP:Boxes = State
 end)
-PlayerEsp.Switch("Name Esp", function(State)
-    ESP:Name(State)
+PlayerEsp.Switch("Name Esp", nil, function(State)
+    ESP:Name = State
 end)
-PlayerEsp.Switch("Tracers Esp", function(State)
-    ESP:Tracers(State)
+PlayerEsp.Switch("Tracers Esp", nil, function(State)
+    ESP.Tracers = State
 end)
 Tab1.Cheat("Ore", "Руды", function(State)
 OreEsp.Switch("Ore")
