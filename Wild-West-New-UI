@@ -17,18 +17,19 @@ end)
 local ESP = loadstring(game:HttpGet("https://raw.githubusercontent.com/1201for/V.G-Hub/main/Karrot-Esp"))()
 
 local PlayerEsp = Tab1.Folder("Player", "Возможно получить Бан")
-PlayerEsp.Switch("Player Esp", nil, function(State)
+PlayerEsp.Switch("Player Esp", function(State)
     ESP:Toggle(State)
 end)
-PlayerEsp.Switch("Boxes Esp", nil, function(State)
+PlayerEsp.Switch("Boxes Esp", function(State)
     ESP.Boxes = State
 end)
-PlayerEsp.Switch("Name Esp", nil, function(State)
+PlayerEsp.Switch("Name Esp", function(State)
     ESP.Name = State
 end)
-PlayerEsp.Switch("Tracers Esp", nil, function(State)
+PlayerEsp.Switch("Tracers Esp", function(State)
     ESP.Tracers = State
 end)
+
 Tab1.Cheat("Ore Esp", "Руда", function(State)
     getgenv().esp = State
     local function esp(v)
