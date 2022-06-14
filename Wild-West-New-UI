@@ -1,4 +1,5 @@
 local Luminosity = loadstring(game:HttpGet("https://raw.githubusercontent.com/iHavoc101/Genesis-Studios/main/UserInterface/Luminosity.lua", true))()
+local ESPLibrary = loadstring(game:HttpGet("https://kiriot22.com/releases/ESP.lua", true))()
 
 local Window = Luminosity.new("BlankHack", "By Sora_Blank", 4370345701)
 
@@ -9,7 +10,7 @@ for i,v in pairs(game:GetService("Workspace")["WORKSPACE_Interactables"].Mining.
     end
 end
 
-local Tab1 = Window.Tab("Visual", 6026568198)
+local Tab1 = Window.Tab("Visual", 3340613148)
 game:GetService("Players").LocalPlayer.Idled:connect(function()
 game:GetService("VirtualUser"):ClickButton2(Vector2.new())
 end)
@@ -133,11 +134,15 @@ AnimalEsp.Switch("Animal Esp", function(State)
 end)
 
 -- Tab 2 --
-local Tab2 = Window.Tab("Misc", 6022668945)
-Tab2.Folder("About", "Добро пожаловать в чит BlankHack, этот чит будет продвигаться и дальше, надеюсь вы поддержите меня :3")
+local Tab2 = Window.Tab("Other", 6022668945)
 local Cheat = Tab2.Folder("More", "Дополнительно")
 Cheat.Button("Rejoin", "Перезайти", function()
 game:GetService("TeleportService"):Teleport(game.PlaceId, game:GetService("Players").LocalPlayer) end)
+
+-- Tab 3 --
+local Tab2 = Window.Tab("More", 6022668945)
+Tab2.Folder("About", "Добро пожаловать в чит BlankHack, этот чит будет продвигаться и дальше, надеюсь вы поддержите меня :3")
+local Credits = Tab2.Folder("Credits", "Credits Sora_Blanks\nCredits Sora#2339\nDiscord Server: https://discord.gg/4pxMCj5epf")
 
 game:GetService("UserInputService").InputBegan:Connect(function(Input)
 if Input.KeyCode == Enum.KeyCode.X then
