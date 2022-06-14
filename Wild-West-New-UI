@@ -3,7 +3,9 @@ local Luminosity = loadstring(game:HttpGet("https://raw.githubusercontent.com/iH
 local Window = Luminosity.new("BlankHack", "By Sora_Blank", 4370345701)
 
 local Tab1 = Window.Tab("Esp", 6026568198)
+
 local ESP = loadstring(game:HttpGet("https://raw.githubusercontent.com/1201for/V.G-Hub/main/Karrot-Esp"))()
+
 local PlayerEsp = Tab1.Folder("Player", "Возможно получить Бан")
 PlayerEsp.Switch("Player Esp", function(Status)
 ESP:Toggle(State)
