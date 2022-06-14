@@ -9,7 +9,7 @@ for i,v in pairs(game:GetService("Workspace")["WORKSPACE_Interactables"].Mining.
     end
 end
 
-local Tab1 = Window.Tab("Esp", 6026568198)
+local Tab1 = Window.Tab("Visual", 6026568198)
 game:GetService("Players").LocalPlayer.Idled:connect(function()
 game:GetService("VirtualUser"):ClickButton2(Vector2.new())
 end)
@@ -29,53 +29,52 @@ end)
 PlayerEsp.Switch("Tracers Esp", nil, function(State)
     ESP.Tracers = State
 end)
-Tab1.Cheat("Ore", "Руды", function(State)
-OreEsp.Switch("Ore")
-getgenv().esp = State
-local function esp(v)
-    local T = Drawing.new("Text")
-    T.Visible = false
-    T.Center = true
-    T.Outline = true
-    T.Font = 2
-    T.Text = "Ore"
-    T.Size = 14
-    T.Color = Color3.fromRGB(203, 214, 73)
-    local function update()
-        local Re
-        Re =
-            game:GetService('RunService').Stepped:Connect(
-            function()
-                if v and v:FindFirstChildOfClass("MeshPart")  then wait()
-                    local Vector, Screen = workspace.CurrentCamera:WorldToViewportPoint(v:FindFirstChildOfClass("MeshPart").Position)
-                    if getgenv().esp and Screen then
-                        T.Position = Vector2.new(Vector.X, Vector.Y)
-                        T.Visible = true
-                        T.Text = v:FindFirstChildOfClass("MeshPart").Name
-                    else
-                        T.Visible = false
+Tab1.Cheat("Ore Esp", function(State)
+    getgenv().esp = State
+    local function esp(v)
+        local T = Drawing.new("Text")
+        T.Visible = false
+        T.Center = true
+        T.Outline = true
+        T.Font = 2
+        T.Text = "Ore"
+        T.Size = 14
+        T.Color = Color3.fromRGB(203, 214, 73)
+        local function update()
+            local Re
+            Re =
+                game:GetService('RunService').Stepped:Connect(
+                function()
+                    if v and v:FindFirstChildOfClass("MeshPart")  then wait()
+                        local Vector, Screen = workspace.CurrentCamera:WorldToViewportPoint(v:FindFirstChildOfClass("MeshPart").Position)
+                        if getgenv().esp and Screen then
+                            T.Position = Vector2.new(Vector.X, Vector.Y)
+                            T.Visible = true
+                            T.Text = v:FindFirstChildOfClass("MeshPart").Name
+                        else
+                            T.Visible = false
+                        end
+                    elseif v:FindFirstChildOfClass("MeshPart") == nil then
+                        T:Remove()
+                        Re:disconnect()
                     end
-                elseif v:FindFirstChildOfClass("MeshPart") == nil then
-                    T:Remove()
-                    Re:disconnect()
                 end
-            end
-        )
+            )
+        end
+        update()
     end
-    update()
-end
-
-
-
-for i, v in pairs(game:GetService("Workspace")["WORKSPACE_Interactables"].Mining.OreDeposits:GetChildren()) do
-    if table.find(OreDeposits, v.Name) then
-        for i, v in pairs(v:GetChildren()) do
-            if v:FindFirstChildOfClass("MeshPart").Name:match("Ore") then
-                esp(v)
+    
+    
+    
+    for i, v in pairs(game:GetService("Workspace")["WORKSPACE_Interactables"].Mining.OreDeposits:GetChildren()) do
+        if table.find(OreDeposits, v.Name) then
+            for i, v in pairs(v:GetChildren()) do
+                if v:FindFirstChildOfClass("MeshPart").Name:match("Ore") then
+                    esp(v)
+                end
             end
         end
     end
-end
 end)
 
 local AnimalEsp = Tab1.Folder("Animal", "Животные")
@@ -135,8 +134,6 @@ AnimalEsp.Switch("Animal Esp", function(State)
     )
     
 end)
-
-
 
 -- Tab 2 --
 local Tab2 = Window.Tab("Misc", 6022668945)
