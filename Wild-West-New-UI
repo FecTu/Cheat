@@ -63,9 +63,6 @@ Tab1.Cheat("Ore Esp", function(State)
         end
         update()
     end
-    
-    
-    
     for i, v in pairs(game:GetService("Workspace")["WORKSPACE_Interactables"].Mining.OreDeposits:GetChildren()) do
         if table.find(OreDeposits, v.Name) then
             for i, v in pairs(v:GetChildren()) do
@@ -132,7 +129,6 @@ AnimalEsp.Switch("Animal Esp", function(State)
             end
         end
     )
-    
 end)
 
 -- Tab 2 --
