@@ -47,7 +47,6 @@ local Utils = require(game:GetService("ReplicatedStorage").Modules.Utils.Utils)
 local Player = require(game:GetService("ReplicatedStorage").Modules.Character.PlayerCharacter)
 local R =  require(game:GetService("ReplicatedStorage").Modules.Load)("Ragdolls")
 local Animal = require(game:GetService("ReplicatedStorage").Modules.Load)("Animal")
-local LegendaryAnimal = require(game:GetService("ReplicatedStorage").Modules.Load)("Legendary Animal")
 local AnimalRiding = require(game:GetService("ReplicatedStorage").Modules.Load)("AnimalRiding")
 Keys = {}
 OreDeposits = {}
@@ -586,63 +585,6 @@ for i, v in pairs(game.Workspace.WORKSPACE_Entities.Animals:GetChildren()) do
     end
 end
 game.Workspace.WORKSPACE_Entities.Animals.ChildAdded:Connect(
-    function(v)
-        if v:IsA("Model") and not v.Name:match("Horse") then
-            esp(v)
-        end
-    end
-)
-
-end)
-
-local Toggle1 = Section2:CreateToggle("Legendary Animal Esp", nil, function(State)
-getgenv().esp3 = State
-local function esp(v)
-    local T = Drawing.new("Text")
-    T.Visible = false
-    T.Center = true
-    T.Outline = true
-    T.Font = 2
-    T.Text = "Ore"
-    T.Size = 14
-    T.Color = Color3.fromRGB(203, 0, 0)
-    local function update()
-        local Re
-        Re =
-            game:GetService("RunService").Stepped:Connect(
-            function()
-                pcall(
-                    function()
-                        if v and v:FindFirstChildOfClass("MeshPart") then
-                            wait()
-                            local Vector, Screen =
-                                workspace.CurrentCamera:WorldToViewportPoint(
-                                v:FindFirstChildOfClass("MeshPart").Position
-                            )
-                            if getgenv().esp3 and Screen then
-                                T.Position = Vector2.new(Vector.X, Vector.Y)
-                                T.Visible = true
-                                T.Text = v.Name
-                            else
-                                T.Visible = false
-                            end
-                        elseif v:FindFirstChildOfClass("MeshPart") == nil then
-                            T:Remove()
-                            Re:disconnect()
-                        end
-                    end
-                )
-            end
-        )
-    end
-    update()
-end
-for i, v in pairs(game.Workspace.WORKSPACE_Entities.LegendaryAnimals:GetChildren()) do
-    if v.ClassName == "Model" and v:FindFirstChildOfClass("MeshPart") and not v.Name:match("Horse") then
-        esp(v)
-    end
-end
-game.Workspace.WORKSPACE_Entities.LegendaryAnimals.ChildAdded:Connect(
     function(v)
         if v:IsA("Model") and not v.Name:match("Horse") then
             esp(v)
