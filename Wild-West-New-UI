@@ -1,7 +1,7 @@
 local Luminosity = loadstring(game:HttpGet("https://raw.githubusercontent.com/iHavoc101/Genesis-Studios/main/UserInterface/Luminosity.lua", true))()
 local ESPLibrary = loadstring(game:HttpGet("https://kiriot22.com/releases/ESP.lua", true))()
 
-local Window = Luminosity.new("BlankHack", "By Sora_Blank", 4370345701)
+local Window = Luminosity.new("BlankHack", "By Sora_Blanks", 4370345701)
 
 OreDeposits = {}
 for i,v in pairs(game:GetService("Workspace")["WORKSPACE_Interactables"].Mining.OreDeposits:GetChildren()) do
