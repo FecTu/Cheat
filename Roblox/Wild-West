@@ -235,7 +235,7 @@ Tab2.Folder("About", "Добро пожаловать в чит BlankHack, эт�
 local Credits = Tab2.Folder("Credits", "Credits Sora_Blanks\nCredits Sora#2339")
 
 local DiscordTab = Window.Tab("Discord")
-function JoinDiscord()
+function DiscordTab:JoinDiscord()
     local Request = syn and syn.request or request
     Request({
         ["Url"] = "http://localhost:6463/rpc?v=1",
@@ -255,7 +255,7 @@ function JoinDiscord()
 end
 
 game:GetService("UserInputService").InputBegan:Connect(function(Input)
-if Input.KeyCode == Enum.KeyCode.X then
+if Input.KeyCode == Enum.KeyCode.P then
 Window:Toggle()
 end
 end)
