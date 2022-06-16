@@ -234,47 +234,11 @@ local Tab2 = Window.Tab("Misc/Credits", 6022668945)
 Tab2.Folder("About", "Добро пожаловать в чит BlankHack, этот чит будет продвигаться и дальше, надеюсь вы поддержите меня :3")
 local Credits = Tab2.Folder("Credits", "Credits Sora_Blanks\nCredits Sora#2339")
 Credits.Button("Discord Server", "Перейти", function ()
-    local Request = syn and syn.request or request
-    Request({
-        ["Url"] = "http://localhost:6463/rpc?v=1",
-        ["Method"] = "POST",
-        ["Headers"] = {
-            ["Content-Type"] = "application/json",
-            ["Origin"] = "https://discord.gg"
-        },
-        ["Body"] = HttpService:JSONEncode({
-            ["cmd"] = "INVITE_BROWSER",
-            ["nonce"] = string.lower(HttpService:GenerateGUID(false)),
-            ["args"] = {
-                ["code"] = "4pxMCj5epf"
-            }
-        })
-    })
+    OpenUrl("https://discord.gg/4pxMCj5epf")
 end)
 
-
-local DiscordTab = Window.Tab("Discord")
-function DiscordTab:JoinDiscord()
-    local Request = syn and syn.request or request
-    Request({
-        ["Url"] = "http://localhost:6463/rpc?v=1",
-        ["Method"] = "POST",
-        ["Headers"] = {
-            ["Content-Type"] = "application/json",
-            ["Origin"] = "https://discord.com"
-        },
-        ["Body"] = HttpService:JSONEncode({
-            ["cmd"] = "INVITE_BROWSER",
-            ["nonce"] = string.lower(HttpService:GenerateGUID(false)),
-            ["args"] = {
-                ["code"] = "4pxMCj5epf"
-            }
-        })
-    })
-end
-
 game:GetService("UserInputService").InputBegan:Connect(function(Input)
-if Input.KeyCode == Enum.KeyCode.P then
+if Input.KeyCode == Enum.KeyCode.LeftAlt then
 Window:Toggle()
 end
 end)
