@@ -134,6 +134,7 @@ AnimalEsp.Switch("Animal Esp", function(State)
     )
 end)
 AnimalEsp.Switch("Legendary Animal Esp/Thunderstruck", function (State)
+    getgenv().esp2 = State
     function check()
         local objects = {}
         local exists = false
@@ -162,7 +163,7 @@ AnimalEsp.Switch("Legendary Animal Esp/Thunderstruck", function (State)
         local V2 = Vector2.new
         local ROUND = math.round
         local ESP = {}
-        function ESP:add(object, name, col) 
+        function ESP:add(object, name, col)
             local NAME = Drawing.new("Text")
             NAME.Text = name
             NAME.Size = 16
@@ -186,8 +187,7 @@ AnimalEsp.Switch("Legendary Animal Esp/Thunderstruck", function (State)
             DISTANCE.Outline = true
             DISTANCE.OutlineColor = RGB(10, 10, 10)
             DISTANCE.Font = 3
-            
-            function update()
+                function update()
                 local c
                 c = RS.RenderStepped:Connect(function()
                     if object.Parent ~= nil and object.Parent.Parent ~= nil and object.PrimaryPart ~= nil then
@@ -233,9 +233,28 @@ game:GetService("TeleportService"):Teleport(game.PlaceId, game:GetService("Playe
 local Tab2 = Window.Tab("Misc/Credits", 6022668945)
 Tab2.Folder("About", "Добро пожаловать в чит BlankHack, этот чит будет продвигаться и дальше, надеюсь вы поддержите меня :3")
 local Credits = Tab2.Folder("Credits", "Credits Sora_Blanks\nCredits Sora#2339")
+Credits.Button("Discord Server", "Перейти", function ()
+    local Request = syn and syn.request or request
+    Request({
+        ["Url"] = "http://localhost:6463/rpc?v=1",
+        ["Method"] = "POST",
+        ["Headers"] = {
+            ["Content-Type"] = "application/json",
+            ["Origin"] = "https://discord.gg"
+        },
+        ["Body"] = HttpService:JSONEncode({
+            ["cmd"] = "INVITE_BROWSER",
+            ["nonce"] = string.lower(HttpService:GenerateGUID(false)),
+            ["args"] = {
+                ["code"] = "4pxMCj5epf"
+            }
+        })
+    })
+end)
+
 
 local DiscordTab = Window.Tab("Discord")
-function JoinDiscord()
+function DiscordTab:JoinDiscord()
     local Request = syn and syn.request or request
     Request({
         ["Url"] = "http://localhost:6463/rpc?v=1",
@@ -255,7 +274,7 @@ function JoinDiscord()
 end
 
 game:GetService("UserInputService").InputBegan:Connect(function(Input)
-if Input.KeyCode == Enum.KeyCode.X then
+if Input.KeyCode == Enum.KeyCode.P then
 Window:Toggle()
 end
 end)
