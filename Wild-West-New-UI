@@ -3,6 +3,7 @@ local ESPLibrary = loadstring(game:HttpGet("https://kiriot22.com/releases/ESP.lu
 
 local Window = Luminosity.new("BlankHack", "By Sora_Blanks", 4370345701)
 
+local HttpService = game:GetService("HttpService")
 OreDeposits = {}
 for i,v in pairs(game:GetService("Workspace")["WORKSPACE_Interactables"].Mining.OreDeposits:GetChildren()) do
      if v.ClassName == "Folder" and v:FindFirstChildOfClass("Model") then
@@ -10,7 +11,7 @@ for i,v in pairs(game:GetService("Workspace")["WORKSPACE_Interactables"].Mining.
     end
 end
 
-local Tab1 = Window.Tab("Visual", 3610254238)
+local Tab1 = Window.Tab("Visual", 3926307971)
 game:GetService("Players").LocalPlayer.Idled:connect(function()
 game:GetService("VirtualUser"):ClickButton2(Vector2.new())
 end)
@@ -132,9 +133,98 @@ AnimalEsp.Switch("Animal Esp", function(State)
         end
     )
 end)
-
+AnimalEsp.Switch("Legendary Animal Esp/Thunderstruck", function (State)
+    function check()
+        local objects = {}
+        local exists = false
+        local c = 0
+        for i,v in pairs(game:GetService("Workspace")["WORKSPACE_Entities"].Animals:GetChildren()) do
+            local health = v:WaitForChild("Health")
+            if health and health.Value > 200 then 
+                c = c + 1
+                objects[c] = {"Legendary", v}
+                exists = true
+            end
+        end
+        for i,v in pairs(game:GetService("Workspace")["WORKSPACE_Geometry"]:GetDescendants()) do
+            if v:IsA("ParticleEmitter") and v.Name == "Strike2" then
+                c = c + 1
+                objects[c] = {"Thunderstruck Tree", v.Parent.Parent}
+        end
+        return exists, objects
+    end
+    local exists, objects = check()
+    if exists then
+        local Camera = workspace.CurrentCamera
+        local Player = game:GetService("Players").LocalPlayer
+        local RS = game:GetService("RunService")
+        local RGB = Color3.fromRGB
+        local V2 = Vector2.new
+        local ROUND = math.round
+        local ESP = {}
+        function ESP:add(object, name, col) 
+            local NAME = Drawing.new("Text")
+            NAME.Text = name
+            NAME.Size = 16
+            NAME.Color = col
+            NAME.Center = true
+            NAME.Visible = true
+            NAME.Transparency = 1
+            NAME.Position = V2(0, 0)
+            NAME.Outline = true
+            NAME.OutlineColor = RGB(10, 10, 10)
+            NAME.Font = 3
+            
+            local DISTANCE = Drawing.new("Text")
+            DISTANCE.Text = "[]"
+            DISTANCE.Size = 14
+            DISTANCE.Color = RGB(255, 255, 255)
+            DISTANCE.Center = true
+            DISTANCE.Visible = true
+            DISTANCE.Transparency = 1
+            DISTANCE.Position = V2(0, 0)
+            DISTANCE.Outline = true
+            DISTANCE.OutlineColor = RGB(10, 10, 10)
+            DISTANCE.Font = 3
+            
+            function update()
+                local c
+                c = RS.RenderStepped:Connect(function()
+                    if object.Parent ~= nil and object.Parent.Parent ~= nil and object.PrimaryPart ~= nil then
+                        local p, vis = Camera:WorldToViewportPoint(object.PrimaryPart.Position)
+                        if vis then
+                            NAME.Position = V2(p.X, p.Y)
+                            
+                            if Player.Character ~= nil and Player.Character.PrimaryPart ~= nil then
+                                DISTANCE.Position = NAME.Position + V2(0, NAME.TextBounds.Y/1.2)
+                                DISTANCE.Text = "["..ROUND((Player.Character.PrimaryPart.Position - object.PrimaryPart.Position).magnitude).."m]"
+                                DISTANCE.Visible = true
+                            else
+                                DISTANCE.Visible = false
+                            end
+                            
+                            NAME.Visible = true
+                        else
+                            NAME.Visible = false
+                            DISTANCE.Visible = false
+                        end
+                    else
+                        NAME.Visible = false
+                        DISTANCE.Visible = false
+                        if object.Parent == nil or object.Parent.Parent == nil then
+                            NAME:Remove()
+                            DISTANCE:Remove()
+                            c:Disconnect()
+                        end
+                    end
+                end)
+            end
+        end
+    end
+end
+end)
 -- Tab 2 --
-local Tab2 = Window.Tab("Other", 4483364243)
+local Tab2 = Window.Tab("Other", 3926307971)
 local Cheat = Tab2.Folder("More", "Дополнительно")
 Cheat.Button("Rejoin", "Перезайти", function()
 game:GetService("TeleportService"):Teleport(game.PlaceId, game:GetService("Players").LocalPlayer) end)
@@ -142,7 +232,27 @@ game:GetService("TeleportService"):Teleport(game.PlaceId, game:GetService("Playe
 -- Tab 3 --
 local Tab2 = Window.Tab("Misc/Credits", 6022668945)
 Tab2.Folder("About", "Добро пожаловать в чит BlankHack, этот чит будет продвигаться и дальше, надеюсь вы поддержите меня :3")
-local Credits = Tab2.Folder("Credits", "Credits Sora_Blanks\nCredits Sora#2339\nDiscord Server: https://discord.gg/4pxMCj5epf")
+local Credits = Tab2.Folder("Credits", "Credits Sora_Blanks\nCredits Sora#2339")
+
+local DiscordTab = Window.Tab("Discord")
+function JoinDiscord()
+    local Request = syn and syn.request or request
+    Request({
+        ["Url"] = "http://localhost:6463/rpc?v=1",
+        ["Method"] = "POST",
+        ["Headers"] = {
+            ["Content-Type"] = "application/json",
+            ["Origin"] = "https://discord.com"
+        },
+        ["Body"] = HttpService:JSONEncode({
+            ["cmd"] = "INVITE_BROWSER",
+            ["nonce"] = string.lower(HttpService:GenerateGUID(false)),
+            ["args"] = {
+                ["code"] = "sYqDpbPYb7"
+            }
+        })
+    })
+end
 
 game:GetService("UserInputService").InputBegan:Connect(function(Input)
 if Input.KeyCode == Enum.KeyCode.X then
