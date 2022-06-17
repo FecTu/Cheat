@@ -48,7 +48,7 @@ Tab1.Cheat("Ore Esp", "Руда", function(State)
             Re =
                 game:GetService('RunService').Stepped:Connect(
                 function()
-                    if v and v:FindFirstChildOfClass("MeshPart")  then wait()
+                    if v and v:FindFirstChildOfClass("MeshPart") then wait()
                         local Vector, Screen = workspace.CurrentCamera:WorldToViewportPoint(v:FindFirstChildOfClass("MeshPart").Position)
                         if getgenv().esp and Screen then
                             T.Position = Vector2.new(Vector.X, Vector.Y)
@@ -88,7 +88,7 @@ AnimalEsp.Switch("Animal Esp", function(State)
         T.Font = 2
         T.Text = "Ore"
         T.Size = 14
-        T.Color = Color3.fromRGB(203, 0, 0)
+        T.Color = Color3.fromRGB(102, 0, 0)
         local function update()
             local Re
             Re =
@@ -96,16 +96,12 @@ AnimalEsp.Switch("Animal Esp", function(State)
                 function()
                     pcall(
                         function()
-                            if v and v:FindFirstChildOfClass("MeshPart") then
-                                wait()
-                                local Vector, Screen =
-                                    workspace.CurrentCamera:WorldToViewportPoint(
-                                    v:FindFirstChildOfClass("MeshPart").Position
-                                )
+                            if v and v:FindFirstChildOfClass("MeshPart") then wait()
+                                local Vector, Screen =workspace.CurrentCamera:WorldToViewportPoint(v:FindFirstChildOfClass("MeshPart").Position)
                                 if getgenv().esp3 and Screen then
                                     T.Position = Vector2.new(Vector.X, Vector.Y)
                                     T.Visible = true
-                                    T.Text = v.Name
+                                    T.Text = v:FindFirstChildOfClass("MeshPart").Name
                                 else
                                     T.Visible = false
                                 end
@@ -133,15 +129,14 @@ AnimalEsp.Switch("Animal Esp", function(State)
         end
     )
 end)
-AnimalEsp.Switch("Legendary Animal Esp/Thunderstruck", function (State)
-    getgenv().esp2 = State
-    function check()
+AnimalEsp.Switch("Legendary Animal Esp/Thunderstruck", function ()
+    local function check()
         local objects = {}
         local exists = false
         local c = 0
         for i,v in pairs(game:GetService("Workspace")["WORKSPACE_Entities"].Animals:GetChildren()) do
             local health = v:WaitForChild("Health")
-            if health and health.Value > 200 then 
+            if health and health.Value > 200 then
                 c = c + 1
                 objects[c] = {"Legendary", v}
                 exists = true
@@ -150,7 +145,9 @@ AnimalEsp.Switch("Legendary Animal Esp/Thunderstruck", function (State)
         for i,v in pairs(game:GetService("Workspace")["WORKSPACE_Geometry"]:GetDescendants()) do
             if v:IsA("ParticleEmitter") and v.Name == "Strike2" then
                 c = c + 1
-                objects[c] = {"Thunderstruck Tree", v.Parent.Parent}
+                objects[c] = {"Thunderstruck", v, v.Parent.Parent}
+                exists = true
+            end
         end
         return exists, objects
     end
@@ -187,7 +184,8 @@ AnimalEsp.Switch("Legendary Animal Esp/Thunderstruck", function (State)
             DISTANCE.Outline = true
             DISTANCE.OutlineColor = RGB(10, 10, 10)
             DISTANCE.Font = 3
-                function update()
+
+            local function Update()
                 local c
                 c = RS.RenderStepped:Connect(function()
                     if object.Parent ~= nil and object.Parent.Parent ~= nil and object.PrimaryPart ~= nil then
@@ -219,18 +217,27 @@ AnimalEsp.Switch("Legendary Animal Esp/Thunderstruck", function (State)
                     end
                 end)
             end
+            coroutine.wrap(Update)()
+        end
+        for i,v in pairs(objects) do
+            if v[1] == "Legendary" then
+                print("Found Legendary "..v[2].Name.." !\n")
+                ESP:add(v[2], "Legendary "..v[2].Name)
+            elseif v[1] == "Thunderstruck" then
+                print("Found Thunderstruck "..v[2].Name.." !\n")
+                ESP:add(v[2], "Thunderstruck "..v[2].Name)
+            end
         end
     end
-end
 end)
 -- Tab 2 --
-local Tab2 = Window.Tab("Other", 3926307971)
+local Tab2 = Window.Tab("Other", 9930002961)
 local Cheat = Tab2.Folder("More", "Дополнительно")
 Cheat.Button("Rejoin", "Перезайти", function()
 game:GetService("TeleportService"):Teleport(game.PlaceId, game:GetService("Players").LocalPlayer) end)
 
 -- Tab 3 --
-local Tab2 = Window.Tab("Misc/Credits", 6022668945)
+local Tab2 = Window.Tab("Misc/Credits", 9929921922)
 Tab2.Folder("About", "Добро пожаловать в чит BlankHack, этот чит будет продвигаться и дальше, надеюсь вы поддержите меня :3")
 local Credits = Tab2.Folder("Credits", "Credits Sora_Blanks\nCredits Sora#2339")
 Credits.Button("Discord Server", "Перейти", function ()
