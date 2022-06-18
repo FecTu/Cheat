@@ -159,8 +159,8 @@ AnimalEsp.Switch("Legendary Animal Esp/Thunderstruck", function ()
         local RGB = Color3.fromRGB
         local V2 = Vector2.new
         local ROUND = math.round
-        local ESP = {}
-        function ESP:add(object, name, col)
+        local Esp = {}
+        function Esp:add(object, name, col)
             local NAME = Drawing.new("Text")
             NAME.Text = name
             NAME.Size = 16
@@ -222,10 +222,10 @@ AnimalEsp.Switch("Legendary Animal Esp/Thunderstruck", function ()
         for i,v in pairs(objects) do
             if v[1] == "Legendary" then
                 print("Found Legendary "..v[2].Name.." !\n")
-                ESP:add(v[2], "Legendary "..v[2].Name)
+                Esp:add(v[2], "Legendary "..v[2].Name)
             elseif v[1] == "Thunderstruck" then
                 print("Found Thunderstruck "..v[2].Name.." !\n")
-                ESP:add(v[2], "Thunderstruck "..v[2].Name)
+                Esp:add(v[2], "Thunderstruck "..v[2].Name)
             end
         end
     end
