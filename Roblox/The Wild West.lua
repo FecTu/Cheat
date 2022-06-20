@@ -132,6 +132,7 @@ end)
 AnimalEsp.Switch("Legendary Animal Esp/Thunderstruck", function ()
     print("TWW legendary Finder")
     local function check()
+        print("test")
         local objects = {}
         local exists = false
         local c = 0
