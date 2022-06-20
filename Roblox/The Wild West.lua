@@ -130,13 +130,15 @@ AnimalEsp.Switch("Animal Esp", function(State)
     )
 end)
 AnimalEsp.Switch("Legendary Animal Esp/Thunderstruck", function ()
+    print("TWW legendary Finder")
     local function check()
         local objects = {}
         local exists = false
         local c = 0
         for i,v in pairs(game:GetService("Workspace")["WORKSPACE_Entities"].Animals:GetChildren()) do
             local health = v:WaitForChild("Health")
-            if health and health.Value > 200 then
+            if health and health.Value > 400 then
+                print("Check Legendary Animals")
                 c = c + 1
                 objects[c] = {"Legendary", v}
                 exists = true
@@ -144,8 +146,9 @@ AnimalEsp.Switch("Legendary Animal Esp/Thunderstruck", function ()
         end
         for i,v in pairs(game:GetService("Workspace")["WORKSPACE_Geometry"]:GetDescendants()) do
             if v:IsA("ParticleEmitter") and v.Name == "Strike2" then
+                print("Check ThunderStruck")
                 c = c + 1
-                objects[c] = {"Thunderstruck", v, v.Parent.Parent}
+                objects[c] = {"Thunderstruck", v.Parent.Parent}
                 exists = true
             end
         end
@@ -224,8 +227,8 @@ AnimalEsp.Switch("Legendary Animal Esp/Thunderstruck", function ()
                 print("Found Legendary "..v[2].Name.." !\n")
                 Esp:add(v[2], "Legendary "..v[2].Name)
             elseif v[1] == "Thunderstruck" then
-                print("Found Thunderstruck "..v[2].Name.." !\n")
-                Esp:add(v[2], "Thunderstruck "..v[2].Name)
+                print("Found Thunderstruck!\n")
+                Esp:add(v[2], "Thunderstruck")
             end
         end
     end
