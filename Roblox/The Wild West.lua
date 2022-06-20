@@ -135,20 +135,20 @@ AnimalEsp.Switch("Legendary Animal Esp/Thunderstruck", function ()
         local objects = {}
         local exists = false
         local c = 0
+        print("Check Legendary Animals")
         for i,v in pairs(game:GetService("Workspace")["WORKSPACE_Entities"].Animals:GetChildren()) do
             local health = v:WaitForChild("Health")
             if health and health.Value > 400 then
-                print("Check Legendary Animals")
                 c = c + 1
                 objects[c] = {"Legendary", v}
                 exists = true
             end
         end
+        print("Check ThunderStruck")
         for i,v in pairs(game:GetService("Workspace")["WORKSPACE_Geometry"]:GetDescendants()) do
             if v:IsA("ParticleEmitter") and v.Name == "Strike2" then
-                print("Check ThunderStruck")
                 c = c + 1
-                objects[c] = {"Thunderstruck", v.Parent.Parent}
+                objects[c] = {"Thunderstruck Tree", v.Parent.Parent}
                 exists = true
             end
         end
@@ -159,9 +159,11 @@ AnimalEsp.Switch("Legendary Animal Esp/Thunderstruck", function ()
         local Camera = workspace.CurrentCamera
         local Player = game:GetService("Players").LocalPlayer
         local RS = game:GetService("RunService")
+
         local RGB = Color3.fromRGB
         local V2 = Vector2.new
         local ROUND = math.round
+
         local Esp = {}
         function Esp:add(object, name, col)
             local NAME = Drawing.new("Text")
